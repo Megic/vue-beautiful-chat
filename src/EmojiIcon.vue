@@ -78,6 +78,9 @@ export default {
 </script>
 
 <style scoped>
+.sc-user-input--picker-wrapper{
+  position: relative;
+}
 .sc-user-input--emoji-icon-wrapper {
   background: none;
   border: none;

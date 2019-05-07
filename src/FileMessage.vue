@@ -1,10 +1,10 @@
 <template>
-  <div class='sc-message--file' :style="messageColors">
+  <div class='sc-message--file' :style="messageColors" @click="onFileClick(data)">
     <div class='sc-message--file-icon'>
       <img :src="data.file.url" class="sc-image">
     </div>
     <div class='sc-message--file-name' :style="messageColors">
-      <a :href="data.file.url ? data.file.url : '#'" target='_blank'>{{data.file.name || ''}}</a>
+      <p >{{data.file.name || ''}}</p>
     </div>
     <div class="sc-message--file-text" :style="messageColors">{{data.text}}<p v-if="data.meta" class='sc-message--meta' :style="messageColors">{{data.meta}}</p></div>
   </div>
@@ -15,6 +15,10 @@ export default {
   props: {
     data: {
       type: Object,
+      required: true
+    },
+    onFileClick: {
+      type: Function,
       required: true
     },
     messageColors: {

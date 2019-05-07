@@ -20,6 +20,7 @@
       :placeholder="placeholder"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
+      :onFileClick="onFileClick"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :messageStyling="messageStyling"
       @scrollToTop="$emit('scrollToTop')"
@@ -79,6 +80,10 @@ export default {
     placeholder: {
       type: String,
       default: 'Write a reply'
+    },
+    onFileClick: {
+      type: Function,
+      required: true
     },
     showTypingIndicator: {
       type: String,

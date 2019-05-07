@@ -17,6 +17,7 @@
       :participants="participants"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
+      :onFileClick="onFileClick"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :messageStyling="messageStyling"
       @scrollToTop="$emit('scrollToTop')"
@@ -47,6 +48,10 @@ export default {
     UserList
   },
   props: {
+    onFileClick: {
+      type: Function,
+      required: true
+    },
     showEmoji: {
       type: Boolean,
       default: false

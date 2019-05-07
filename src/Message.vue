@@ -5,14 +5,17 @@
         received: message.author !== 'me' && message.type !== 'system',
         system: message.type === 'system'
       }">
-      <div v-if="message.type !== 'system'" :title="authorName" class="sc-message--avatar" :style="{
+      <div v-if="message.type !== 'system' && message.author !== 'me'" :title="authorName" class="sc-message--avatar" :style="{
         backgroundImage: `url(${chatImageUrl})`
       }" v-tooltip="message.author"></div>
       <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" :messageStyling="messageStyling" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
-      <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
+      <FileMessage v-else-if="message.type === 'file'" :onFileClick="onFileClick" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
+      <div v-if="message.type !== 'system' && message.author === 'me'" :title="authorName" class="sc-message--avatar" :style="{
+        backgroundImage: `url(${chatImageUrl})`
+      }" v-tooltip="message.author"></div>
     </div>
   </div>
 </template>
@@ -53,6 +56,10 @@ export default {
     },
     authorName: {
       type: String
+    },
+    onFileClick: {
+      type: Function,
+      required: true
     },
     messageStyling: {
       type: Boolean,
@@ -100,7 +107,8 @@ export default {
 }
 
 .sc-message--content.sent .sc-message--avatar {
-  display: none;
+  // display: none;
+  margin-right: 0;margin-left:10px; 
 }
 
 .sc-message--avatar {
@@ -111,7 +119,7 @@ export default {
   min-height: 30px;
   border-radius: 50%;
   align-self: center;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .sc-message--meta {

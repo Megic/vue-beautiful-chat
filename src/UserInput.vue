@@ -190,7 +190,7 @@ export default {
 .sc-user-input--buttons {
   width: 100px;
   position: absolute;
-  right: 30px;
+  right: 20px;
   height: 100%;
   display: flex;
 }
@@ -205,6 +205,7 @@ export default {
   margin-left: 2px;
   margin-right: 2px;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
 }

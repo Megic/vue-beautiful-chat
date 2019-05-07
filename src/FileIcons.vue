@@ -1,4 +1,5 @@
 <template>
+ <div>
     <button
       class="sc-user-input--file-icon-wrapper"
       type='button'
@@ -18,6 +19,7 @@
       </svg>
     </button>
     <input type='file' id='file-input' @change="_handleChange" @click="_handleClick" />
+    </div>
 </template>
 
 <script>
@@ -55,6 +57,7 @@ export default {
   margin: 0px;
   outline: none;
   cursor: pointer;
+  position: relative;
 }
 
 .sc-user-input--file-icon {
