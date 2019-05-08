@@ -25,7 +25,11 @@
       :messageStyling="messageStyling"
       @scrollToTop="$emit('scrollToTop')"
       @onType="$emit('onType')"
-    />
+    >
+    <template slot="file" slot-scope="{ data }">
+        <slot name="file" :data="data"></slot>
+      </template>
+    </ChatWindow>
   </div>
 </template>
 <script>

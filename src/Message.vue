@@ -10,7 +10,11 @@
       }" v-tooltip="message.author"></div>
       <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" :messageStyling="messageStyling" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
-      <FileMessage v-else-if="message.type === 'file'" :onFileClick="onFileClick" :data="message.data" :messageColors="determineMessageColors()" />
+      <FileMessage v-else-if="message.type === 'file'" :onFileClick="onFileClick" :data="message.data" :messageColors="determineMessageColors()" >
+      <template slot="file" slot-scope="{ data }">
+        <slot name="file" :data="data"></slot>
+      </template>
+      </FileMessage>
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
       <div v-if="message.type !== 'system' && message.author === 'me'" :title="authorName" class="sc-message--avatar" :style="{

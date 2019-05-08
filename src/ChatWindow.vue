@@ -21,7 +21,11 @@
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :messageStyling="messageStyling"
       @scrollToTop="$emit('scrollToTop')"
-    />
+    >
+    <template slot="file" slot-scope="{ data }">
+        <slot name="file" :data="data"></slot>
+      </template>
+    </MessageList>
     <UserInput
       v-if="!showUserList"
       :showEmoji="showEmoji"

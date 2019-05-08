@@ -1,6 +1,10 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}" @scroll="handleScroll">
-    <Message v-for="(message, idx) in messages" :message="message" :onFileClick="onFileClick" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" :messageStyling="messageStyling" />
+    <Message v-for="(message, idx) in messages" :message="message" :onFileClick="onFileClick" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" :messageStyling="messageStyling" >
+      <template slot="file" slot-scope="{ data }">
+        <slot name="file" :data="data"></slot>
+      </template>
+    </Message>
     <Message v-show="showTypingIndicator !== ''" :message="{author: showTypingIndicator, type: 'typing'}" :onFileClick="onFileClick" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" :messageStyling="messageStyling" />
   </div>
 </template>
